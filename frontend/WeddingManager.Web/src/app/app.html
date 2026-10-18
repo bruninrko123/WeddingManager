@@ -1,0 +1,114 @@
+<main class="workspace-shell">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Vow and Venue home">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span>vow &amp; venue</span>
+    </a>
+    <span class="topbar-note">Your wedding, thoughtfully planned</span>
+  </header>
+
+  <section class="page-heading">
+    <div>
+      <p class="eyebrow">THE PLANNING DESK</p>
+      <h1>Make room for the good things.</h1>
+      <p class="page-subtitle">Keep the details in one place, and enjoy the moments in between.</p>
+    </div>
+    <button class="button button-primary" type="button" (click)="openCreateForm()">
+      <span aria-hidden="true">+</span> New wedding
+    </button>
+  </section>
+
+  <section class="wedding-toolbar" aria-label="Wedding selection">
+    <app-wedding-selector
+      [weddings]="weddings"
+      [selectedWeddingId]="selectedWeddingId"
+      (weddingSelected)="selectWedding($event)"
+    ></app-wedding-selector>
+    @if (selectedWedding && !isWeddingFormOpen) {
+      <button class="button button-secondary" type="button" (click)="openEditForm()">
+        Edit wedding details
+      </button>
+    }
+  </section>
+
+  @if (loadError) {
+    <p class="notice" role="alert">{{ loadError }}</p>
+  }
+
+  @if (isWeddingFormOpen) {
+    <section class="form-panel" aria-labelledby="wedding-form-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">{{ editingWedding ? 'YOUR DETAILS' : 'A NEW BEGINNING' }}</p>
+          <h2 id="wedding-form-title">
+            {{ editingWedding ? 'Edit wedding' : 'Create a wedding' }}
+          </h2>
+        </div>
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Close form"
+          (click)="closeWeddingForm()"
+        >
+          ×
+        </button>
+      </div>
+      <app-wedding-form
+        [wedding]="editingWedding"
+        (saved)="onWeddingSaved($event)"
+        (cancelled)="closeWeddingForm()"
+      ></app-wedding-form>
+    </section>
+  }
+
+  @if (selectedWedding && !isWeddingFormOpen) {
+    <section class="wedding-hero" aria-label="Selected wedding">
+      <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85"
+        alt="A warmly lit wedding reception set for an intimate celebration"
+      />
+      <div class="hero-shade"></div>
+      <div class="hero-copy">
+        <p class="hero-kicker">YOUR CELEBRATION</p>
+        <h2>{{ selectedWedding.name }}</h2>
+        <div class="hero-meta">
+          <span>{{ selectedWedding.weddingDate | date: 'longDate' }}</span>
+          <span class="meta-divider" aria-hidden="true"></span>
+          <span>{{ selectedWedding.location }}</span>
+        </div>
+      </div>
+      <span class="hero-caption">THE DAY IS YOURS</span>
+    </section>
+
+    <section class="planning-section">
+      <div class="section-heading tasks-heading">
+        <div>
+          <p class="eyebrow">THE LITTLE DETAILS</p>
+          <h2>Wedding tasks</h2>
+        </div>
+      </div>
+      <app-wedding-task-manager [weddingId]="selectedWedding.id"></app-wedding-task-manager>
+    </section>
+  } @else if (!isLoading && !isWeddingFormOpen && !loadError) {
+    <section class="empty-weddings">
+      <span class="empty-mark" aria-hidden="true">✳</span>
+      <p>
+        {{
+          weddings.length
+            ? 'Choose a wedding to continue planning.'
+            : 'Start with the day you are dreaming of.'
+        }}
+      </p>
+      <button class="button button-primary" type="button" (click)="openCreateForm()">
+        Create your first wedding
+      </button>
+    </section>
+  }
+
+  @if (isLoading) {
+    <div class="loading-state" role="status">Gathering your wedding details…</div>
+  }
+
+  <router-outlet></router-outlet>
+</main>

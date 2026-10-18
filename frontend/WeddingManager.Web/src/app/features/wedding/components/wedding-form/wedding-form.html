@@ -1,0 +1,46 @@
+<form [formGroup]="weddingForm" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-grid">
+    <div class="field field-wide">
+      <label for="wedding-name">Couple or celebration name</label>
+      <input
+        id="wedding-name"
+        type="text"
+        formControlName="name"
+        placeholder="e.g. Bruno &amp; Thamara"
+        autocomplete="off"
+      />
+      @if (weddingForm.controls.name.touched && weddingForm.controls.name.invalid) {
+        <span class="field-error">Add a name for this wedding.</span>
+      }
+    </div>
+    <div class="field">
+      <label for="wedding-date">Wedding date</label>
+      <input id="wedding-date" type="date" formControlName="weddingDate" />
+      @if (weddingForm.controls.weddingDate.touched && weddingForm.controls.weddingDate.invalid) {
+        <span class="field-error">Choose a date.</span>
+      }
+    </div>
+    <div class="field">
+      <label for="wedding-location">Location</label>
+      <input
+        id="wedding-location"
+        type="text"
+        formControlName="location"
+        placeholder="City or venue"
+        autocomplete="off"
+      />
+      @if (weddingForm.controls.location.touched && weddingForm.controls.location.invalid) {
+        <span class="field-error">Add a location.</span>
+      }
+    </div>
+  </div>
+  @if (errorMessage) {
+    <p class="form-error" role="alert">{{ errorMessage }}</p>
+  }
+  <div class="form-actions">
+    <button class="button button-secondary" type="button" (click)="cancelled.emit()">Cancel</button>
+    <button class="button button-primary" type="submit" [disabled]="isSaving">
+      {{ isSaving ? 'Saving…' : wedding ? 'Save changes' : 'Create wedding' }}
+    </button>
+  </div>
+</form>

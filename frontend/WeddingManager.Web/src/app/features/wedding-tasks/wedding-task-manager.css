@@ -1,0 +1,256 @@
+:host {
+  display: block;
+}
+
+.task-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.75fr);
+  gap: 34px;
+  padding-top: 24px;
+}
+
+.task-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.completion-control {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.completion-control input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.completion-control span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: white;
+}
+
+.completion-control input:checked + span {
+  border-color: var(--green);
+  background: var(--green);
+}
+.completion-control input:checked + span::after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 9px;
+  margin: 3px 6px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.completion-control input:focus-visible + span {
+  outline: 3px solid rgb(217 130 104 / 55%);
+  outline-offset: 2px;
+}
+
+.task-copy h3 {
+  margin: 0 0 5px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.task-copy p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.task-due {
+  color: var(--muted);
+  font-size: 11px;
+}
+.task-complete .task-copy h3 {
+  color: #88948e;
+  text-decoration: line-through;
+}
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 2px;
+}
+.text-action {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--green);
+  cursor: pointer;
+  font-size: 12px;
+}
+.text-action:hover {
+  text-decoration: underline;
+}
+.text-danger {
+  color: var(--coral-deep);
+}
+.delete-confirm {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.task-editor {
+  align-self: start;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--green);
+  background: white;
+}
+
+.editor-kicker {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+.task-editor > h3 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 500;
+}
+.task-editor form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.task-editor label {
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 600;
+}
+.task-editor label span {
+  margin-left: 4px;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.task-editor input,
+.task-editor textarea {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: #fcfdfb;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.task-editor textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+.task-editor input::placeholder,
+.task-editor textarea::placeholder {
+  color: #9aa59f;
+}
+.field-error {
+  color: #a44736;
+  font-size: 11px;
+}
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+.cancel-edit {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.save-task {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--green);
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.save-task:hover {
+  background: var(--green-deep);
+}
+.save-task:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+.task-empty,
+.task-state {
+  padding: 35px 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.empty-spark {
+  color: var(--coral);
+  font-size: 25px;
+}
+.task-empty h3 {
+  margin: 9px 0 5px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+}
+.task-empty p {
+  margin: 0;
+  font-size: 12px;
+}
+.task-error {
+  margin: 0 0 12px;
+  color: #a44736;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .task-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .task-editor {
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-row {
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .task-actions {
+    grid-column: 2;
+    padding-top: 0;
+  }
+}

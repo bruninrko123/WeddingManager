@@ -1,0 +1,299 @@
+:host {
+  display: block;
+}
+
+.workspace-shell {
+  width: min(1120px, calc(100% - 56px));
+  margin: 0 auto;
+  padding-bottom: 72px;
+}
+
+.topbar {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 30px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--coral);
+  border-radius: 50%;
+  color: var(--coral-deep);
+  font-size: 16px;
+  font-style: italic;
+}
+
+.topbar-note {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-heading,
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.page-heading {
+  padding: 48px 0 28px;
+}
+
+.eyebrow,
+.hero-kicker {
+  margin: 0 0 10px;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+.page-heading h1 {
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.page-subtitle {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.wedding-toolbar {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0 20px;
+}
+
+.wedding-hero {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--green-deep);
+  color: white;
+}
+
+.hero-image,
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-image {
+  object-fit: cover;
+  object-position: center 52%;
+}
+.hero-shade {
+  background:
+    linear-gradient(90deg, rgb(17 37 32 / 78%), rgb(17 37 32 / 8%) 85%),
+    linear-gradient(0deg, rgb(17 37 32 / 38%), transparent 75%);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 38px 44px;
+}
+.hero-kicker {
+  color: #f5c2ae;
+}
+
+.hero-copy h2 {
+  max-width: 750px;
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1.06;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  color: rgb(255 255 255 / 88%);
+  font-size: 14px;
+}
+
+.meta-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f5a88f;
+}
+
+.hero-caption {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  color: rgb(255 255 255 / 78%);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.planning-section {
+  padding-top: 34px;
+}
+.section-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+}
+.tasks-heading {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.empty-tasks,
+.empty-weddings {
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.empty-mark {
+  margin-bottom: 10px;
+  color: var(--coral);
+  font-size: 26px;
+}
+.empty-tasks p,
+.empty-weddings p {
+  margin-bottom: 5px;
+  font-family: var(--font-display);
+  font-size: 21px;
+}
+.empty-tasks > span:last-child {
+  color: var(--muted);
+  font-size: 13px;
+}
+.empty-weddings {
+  min-height: 290px;
+  gap: 12px;
+}
+.empty-weddings .empty-mark,
+.empty-weddings p {
+  margin: 0;
+}
+
+.form-panel {
+  margin: 8px 0 28px;
+  padding: 26px 30px 30px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--coral);
+  background: white;
+  animation: rise-in 220ms ease-out both;
+}
+
+.form-panel .section-heading {
+  margin-bottom: 24px;
+}
+
+.icon-button {
+  width: 36px;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 23px;
+  line-height: 1;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .workspace-shell {
+    width: min(100% - 32px, 1120px);
+    padding-bottom: 40px;
+  }
+  .topbar {
+    min-height: 60px;
+  }
+  .topbar-note {
+    max-width: 130px;
+    font-size: 9px;
+    text-align: right;
+  }
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 34px 0 22px;
+  }
+  .page-heading h1 {
+    font-size: 34px;
+  }
+  .page-subtitle {
+    max-width: 340px;
+    line-height: 1.5;
+  }
+  .wedding-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding-bottom: 14px;
+  }
+  .wedding-hero {
+    min-height: 270px;
+  }
+  .hero-copy {
+    padding: 28px 22px;
+  }
+  .hero-copy h2 {
+    font-size: 39px;
+  }
+  .hero-caption {
+    right: 12px;
+    bottom: 12px;
+    font-size: 8px;
+  }
+  .form-panel {
+    padding: 22px 18px;
+  }
+}

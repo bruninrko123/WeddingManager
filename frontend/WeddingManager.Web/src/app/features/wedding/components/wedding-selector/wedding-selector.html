@@ -1,0 +1,14 @@
+<div class="wedding-selector">
+  <label for="wedding">PLANNING FOR</label>
+  <select
+    id="wedding"
+    [value]="selectedWeddingId ?? ''"
+    (change)="onWeddingChange($event)"
+    [disabled]="weddings.length === 0"
+  >
+    <option value="" disabled>Select a wedding</option>
+    @for (wedding of weddings; track wedding.id) {
+      <option [value]="wedding.id">{{ wedding.name }}</option>
+    }
+  </select>
+</div>
