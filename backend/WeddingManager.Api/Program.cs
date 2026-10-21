@@ -3,6 +3,7 @@ using WeddingManager.Infraestructure.Persistence;
 using WeddingManager.Application.Interfaces;
 using WeddingManager.Infraestructure.Repositories;
 using WeddingManager.Application.Services;
+using Amazon.Extensions.NETCore.Setup;
 using Amazon.S3;
 using WeddingManager.Infraestructure.Storage;
 
@@ -26,6 +27,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 
 builder.Services.AddAWSService<IAmazonS3>();
 
